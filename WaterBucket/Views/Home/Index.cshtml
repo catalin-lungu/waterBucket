@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div ng-app="waterApp">
+    <div ng-controller="waterController">
+
+        <div>
+            <h1>Water challenge</h1>
+            <p class="lead">
+                Given you had an infinite supply of water… You are given 2 cups, a {{bucket1}} liter cup and a {{bucket2}} liter cup How would you measure exactly {{water}} liters?
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <p class="lead text-center">New input</p>
+                <form id ="newInputForm" name="newInputForm" kendo-validator="validator" ng-submit="searchSolution()">
+                    <ul id="fieldlist">
+                        <li>
+                            <label for="bucket1">Size bucket 1 :</label>
+                            <input id="bucket1" name="bucket1" type="number" k-min="1"
+                                   kendo-numeric-text-box required validationMessage="Enter size for {0}"
+                                   k-options="options" ng-model="bucket1"/>
+                            <span class="k-invalid-msg" data-for="bucket1"></span>
+                        </li>
+                        <li>
+                            <label for="bucket2">Size bucket 2 :</label>
+                            <input id="bucket2" name="bucket2" type="number" k-min="1"
+                                   kendo-numeric-text-box required validationMessage="Enter size for {0}"
+                                   k-options="options" ng-model="bucket2"/>
+                            <span class="k-invalid-msg" data-for="bucket2"></span>
+                        </li>
+                        <li>
+                            <label for="water">Water wanted:</label>
+                            <input id="water" name="water" type="number" k-min="1"
+                                   kendo-numeric-text-box required validationMessage="Enter how much water you want"
+                                   k-options="options" ng-model="water"/>
+                            <span class="k-invalid-msg" data-for="water"></span>
+                        </li>
+                        <li>
+                            <label for="nrSolutions">Number of solutions:</label>
+                            <input id="nrSolutions" name="nrSolutions" type="number" k-min="1"
+                                   kendo-numeric-text-box required validationMessage="Enter how many solutions you want"
+                                   k-options="optionsSolutions" ng-model="nrSolutions"/>
+                            <span class="k-invalid-msg" data-for="nrSolutions"></span>
+                        </li>
+                        <li>
+                            <input id="btnSearchSolution" type="submit" value="Get my water" class="btn btn-info" 
+                                   data-ng-disabled="disabled" @*ng-disabled="{{newInputForm.$invalid}}"*@ />
+                        </li>
+                    </ul>
+                </form>
+            </div>
+            <div id="solutions" class="col-sm-9">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="../../Scripts/app-waterbucket.js"></script>
+}
